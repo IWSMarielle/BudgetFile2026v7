@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gyrus Group - Corporate Multi-Ledger</title>
+    <title>Gyrus Group - Ledger V10.4</title>
     <style>
         /* PORTAL LOGIN STYLES */
         #password-overlay {
@@ -18,46 +18,53 @@
             padding: 12px; margin: 8px 0; border-radius: 6px; border: 1px solid #475569; 
             width: 100%; text-align: center; font-size: 14px; background: #0f172a; color: white;
         }
-        .btn-prime { background: #fbbf24; color: #0f172a; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
-        .btn-sub { background: transparent; color: #94a3b8; border: 1px solid #475569; padding: 8px; border-radius: 6px; font-size: 11px; cursor: pointer; margin-top: 20px; width: 100%; }
-        #admin-panel { display: none; margin-top: 20px; padding-top: 20px; border-top: 1px dashed #475569; width: 100%; }
+        .btn-prime { background: #fbbf24; color: #0f172a; border: none; padding: 10px; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; }
 
-        /* V10.2 ULTRA-COMPACT TABLE STYLES */
+        /* V10.4 ZERO-GAP STYLES */
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
-        body { font-family: 'Inter', sans-serif; padding: 10px; background-color: #f1f5f9; color: #1e293b; line-height: 1; }
-        .header-main { background: #0f172a; color: #fbbf24; padding: 10px; border-radius: 4px 4px 0 0; text-align: center; border-bottom: 4px solid #fbbf24; }
-        .header-main h1 { margin: 0; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; }
-        .toolbar { display: flex; gap: 8px; align-items: center; background: #fff; padding: 8px; border: 1px solid #cbd5e1; border-bottom: none; }
-        .table-container { overflow-x: auto; border: 1px solid #cbd5e1; background: white; }
-        table { border-collapse: collapse; table-layout: fixed; min-width: 6500px; width: 100%; border-spacing: 0; }
+        body { font-family: 'Inter', sans-serif; padding: 5px; background-color: #f1f5f9; color: #1e293b; overflow-y: hidden; }
         
-        .col-cat { width: 350px; } .col-val { width: 100px; } .col-pct { width: 65px; } 
-        .col-rem { width: 220px; } .col-ytd { width: 120px; } .col-final { width: 300px; }
+        .header-main { background: #0f172a; color: #fbbf24; padding: 8px; text-align: center; border-bottom: 3px solid #fbbf24; }
+        .header-main h1 { margin: 0; font-size: 16px; letter-spacing: 1px; }
+        
+        .toolbar { display: flex; gap: 5px; background: #fff; padding: 5px; border: 1px solid #cbd5e1; border-bottom: none; }
+        .table-container { overflow: auto; border: 1px solid #cbd5e1; background: white; height: calc(100vh - 100px); }
+        
+        table { border-collapse: collapse; table-layout: fixed; min-width: 6000px; width: 100%; }
+        
+        .col-cat { width: 320px; } .col-val { width: 95px; } .col-pct { width: 60px; } 
+        .col-rem { width: 200px; } .col-ytd { width: 110px; } .col-final { width: 280px; }
         
         .sticky-col { position: sticky; left: 0; background: #1e293b !important; color: white; z-index: 30; border-right: 2px solid #fbbf24; }
-        th { padding: 4px; font-size: 10px; text-transform: uppercase; border: 1px solid #475569; color: white; background: #334155; height: 25px; }
-        .category-header { background-color: #334155 !important; color: #fbbf24 !important; font-weight: bold; }
         
-        td { border: 1px solid #e2e8f0; padding: 0 5px; text-align: right; font-size: 12px; vertical-align: middle; height: 28px; overflow: hidden; }
+        th { padding: 2px; font-size: 10px; border: 1px solid #475569; color: white; background: #334155; height: 22px; }
         
-        /* FIXING GROWING WHITE SPACE: FORCE SINGLE LINE */
-        .remarks-area, .name-area { 
+        .category-header td { 
+            background-color: #334155 !important; 
+            color: #fbbf24 !important; 
+            font-weight: bold; 
+            font-size: 11px;
+            height: 24px !important;
+            border-top: 1px solid #475569;
+            border-bottom: 1px solid #475569;
+        }
+
+        td { border: 1px solid #e2e8f0; padding: 0 4px; text-align: right; font-size: 11px; vertical-align: middle; height: 24px; }
+        
+        .name-area, .remarks-area { 
             font-size: 11px; text-align: left; background: transparent; 
-            width: 100%; border: none; resize: none; 
-            height: 20px !important; /* Locked Height */
-            overflow: hidden; white-space: nowrap; 
-            font-family: inherit; display: block; line-height: 20px; 
+            width: 100%; border: none; resize: none; height: 18px; 
+            overflow: hidden; white-space: nowrap; color: inherit; display: block; line-height: 18px;
         }
         .name-area { color: white; font-weight: 600; }
-        .remarks-area { color: #64748b; }
-
-        .rmcc-simple { font-size: 9px; font-weight: 700; display: block; border-bottom: 1px solid #e2e8f0; margin-bottom: 1px; line-height: 10px; }
-        .btn-add { background:#10b981; color:white; float: right; padding: 0 4px; border: none; cursor: pointer; border-radius: 2px; }
-        .del-btn { color: #f87171; background: none; border: none; cursor: pointer; margin-right: 5px; font-weight: bold; }
-        input.val-inp { border: none; background: transparent; text-align: right; width: 100%; font-size: 12px; height: 24px; }
         
-        .total-row { background-color: #f8fafc; font-weight: bold; height: 28px; }
+        .val-inp { border: none; background: transparent; text-align: right; width: 100%; font-size: 11px; height: 20px; }
+        .btn-add { background:#10b981; color:white; border:none; padding: 0 6px; cursor:pointer; border-radius:2px; font-weight:bold; float: right; }
+        .del-btn { color: #f87171; background: none; border: none; cursor: pointer; margin-right: 5px; font-weight: bold; font-size: 14px; }
+
+        .total-row { background-color: #f8fafc; font-weight: bold; }
         .gor-row { background-color: #dcfce7 !important; color: #166534 !important; font-weight: bold; }
+        .pbt-row { background-color: #fef3c7 !important; color: #92400e !important; font-weight: bold; }
         .pat-row { background-color: #0f172a !important; color: #fbbf24 !important; font-weight: bold; }
     </style>
 </head>
@@ -65,28 +72,19 @@
 
     <div id="password-overlay">
         <div class="login-box">
-            <h1 style="color:#fbbf24;">CORPORATE PORTAL</h1>
-            <div id="login-view">
-                <select id="companySelect"></select>
-                <input type="password" id="passInput" placeholder="Access Code">
-                <button class="btn-prime" onclick="checkAccess()">UNLOCK</button>
-                <button class="btn-sub" onclick="toggleAdmin()">+ MANAGE COMPANIES</button>
-            </div>
-            <div id="admin-panel">
-                <input type="text" id="newCoName" placeholder="New Company Name">
-                <input type="text" id="newCoPass" placeholder="Set Access Code">
-                <button class="btn-prime" style="background:#10b981; color:white;" onclick="addNewCompany()">SAVE</button>
-                <button class="btn-sub" onclick="toggleAdmin()">CANCEL</button>
-            </div>
+            <h1 style="color:#fbbf24; margin-bottom:15px;">CORPORATE PORTAL</h1>
+            <select id="companySelect"></select>
+            <input type="password" id="passInput" placeholder="Access Code">
+            <button class="btn-prime" onclick="checkAccess()">UNLOCK</button>
         </div>
     </div>
 
     <div id="main-content" style="display:none;">
         <div class="header-main"><h1 id="activeCoTitle">Gyrus Industries Corporation</h1></div>
         <div class="toolbar">
-            <button class="btn-prime" style="width:auto; padding:5px 15px;" onclick="exportToFile()">💾 Save</button>
-            <button class="btn-sub" style="width:auto; margin-top:0;" onclick="document.getElementById('fileInput').click()">📂 Load</button>
-            <button class="btn-sub" style="width:auto; margin-top:0; margin-left:auto; color:#ef4444;" onclick="location.reload()">🔒 Logout</button>
+            <button onclick="exportToFile()" style="padding:2px 10px;">💾 Save</button>
+            <button onclick="document.getElementById('fileInput').click()" style="padding:2px 10px;">📂 Load</button>
+            <button onclick="location.reload()" style="margin-left:auto; color:red;">Logout</button>
             <input type="file" id="fileInput" style="display:none" onchange="importFromFile(this)">
         </div>
 
@@ -103,6 +101,7 @@
                 <tbody id="expenses-rows"></tbody>
                 <tr class="total-row" id="expenses-total-row"></tr>
                 <tr class="gor-row" id="gor-summary-row"></tr> 
+                <tr class="pbt-row" id="pbt-summary-row"></tr> 
                 <tr class="pat-row" id="pat-summary-row"></tr> 
             </table>
         </div>
@@ -120,18 +119,6 @@
         function updateDropdown() {
             document.getElementById('companySelect').innerHTML = companies.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
         }
-        function toggleAdmin() {
-            document.getElementById('admin-panel').style.display = document.getElementById('admin-panel').style.display === 'none' ? 'block' : 'none';
-            document.getElementById('login-view').style.display = document.getElementById('login-view').style.display === 'none' ? 'block' : 'none';
-        }
-        function addNewCompany() {
-            const name = document.getElementById('newCoName').value;
-            const pass = document.getElementById('newCoPass').value;
-            if(!name || !pass) return;
-            companies.push({ name: name.toUpperCase(), pass: pass, id: "db_" + Date.now() });
-            localStorage.setItem('corp_registry', JSON.stringify(companies));
-            updateDropdown(); toggleAdmin();
-        }
         function checkAccess() {
             const id = document.getElementById('companySelect').value;
             const pass = document.getElementById('passInput').value;
@@ -148,7 +135,14 @@
         function initTable() {
             const mHead = document.getElementById('monthHeaders');
             const sHead = document.getElementById('subHeaders');
-            const configs = [{id:'sales-total', label:'SALES TOTAL'},{id:'cogs-total', label:'COGS TOTAL'},{id:'expenses-total', label:'EXPENSES TOTAL'},{id:'gor-summary', label:'GOR'},{id:'pat-summary', label:'PAT'}];
+            const configs = [
+                {id:'sales-total', label:'SALES TOTAL'},
+                {id:'cogs-total', label:'COGS TOTAL'},
+                {id:'expenses-total', label:'EXPENSES TOTAL'},
+                {id:'gor-summary', label:'GOR'},
+                {id:'pbt-summary', label:'PBT'},
+                {id:'pat-summary', label:'PAT'}
+            ];
             
             mHead.innerHTML = '<th rowspan="2" class="sticky-col col-cat">ACCOUNT CATEGORY</th>';
             months.forEach((m, idx) => {
@@ -156,15 +150,14 @@
                 if(idx === 0) sHead.innerHTML += `<th class="col-val">Dec(LM)</th>`;
                 sHead.innerHTML += `<th class="col-val">F</th><th class="col-val">A</th><th class="col-pct">vs F %</th><th class="col-pct">vs L %</th><th class="col-rem">Remarks</th>`;
             });
-            mHead.innerHTML += `<th rowspan="2" class="col-ytd">YTD</th><th rowspan="2" class="col-final">ANNUAL SUMMARY</th>`;
+            mHead.innerHTML += `<th rowspan="2" class="col-ytd">YTD</th><th rowspan="2" class="col-final">SUMMARY</th>`;
 
             configs.forEach(conf => {
                 const row = document.getElementById(`${conf.id}-row`);
-                if(!row) return;
                 let html = `<td class="sticky-col col-cat">${conf.label}</td>`;
                 months.forEach((_, idx) => {
                     if(idx === 0) html += `<td id="tot-0-lm-${conf.id}">0.00</td>`;
-                    html += `<td id="tot-${idx}-f-${conf.id}">0.00</td><td id="tot-${idx}-a-${conf.id}">0.00</td><td id="pct-${idx}-f-${conf.id}">0.0%</td><td id="pct-${idx}-lm-${conf.id}">0.0%</td><td><textarea class="remarks-area data-save" data-key="${conf.id}-rem-${idx}" oninput="saveData()"></textarea></td>`;
+                    html += `<td id="tot-${idx}-f-${conf.id}">0.00</td><td id="tot-${idx}-a-${conf.id}">0.00</td><td id="pct-${idx}-f-${conf.id}">0%</td><td id="pct-${idx}-lm-${conf.id}">0%</td><td><textarea class="remarks-area data-save" data-key="${conf.id}-rem-${idx}" oninput="saveData()"></textarea></td>`;
                 });
                 html += `<td id="ytd-a-${conf.id}">0.00</td><td><textarea class="remarks-area data-save" data-key="${conf.id}-rem-final" oninput="saveData()"></textarea></td>`;
                 row.innerHTML = html;
@@ -183,7 +176,7 @@
             months.forEach((_, idx) => {
                 let v = loadedData ? loadedData.vals[idx] : {lm:'0', f:'0', a:'0', rem:''};
                 if(idx === 0) html += `<td><input type="text" class="val-lm val-inp live-inp" value="${v.lm}"></td>`;
-                html += `<td><input type="text" class="val-f val-inp live-inp" value="${v.f}"></td><td><input type="text" class="val-a val-inp live-inp" value="${v.a}"></td><td class="row-pct-f">0%</td><td class="row-pct-lm">0%</td><td><div class="rmcc-wrapper"></div><textarea class="remarks-area data-save" oninput="saveData()">${v.rem}</textarea></td>`;
+                html += `<td><input type="text" class="val-f val-inp live-inp" value="${v.f}"></td><td><input type="text" class="val-a val-inp live-inp" value="${v.a}"></td><td class="row-pct-f">0%</td><td class="row-pct-lm">0%</td><td><textarea class="remarks-area data-save" oninput="saveData()">${v.rem}</textarea></td>`;
             });
             html += `<td class="row-ytd-a">0</td><td><textarea class="remarks-area data-save" oninput="saveData()">${loadedData?loadedData.finalRem:''}</textarea></td>`;
             row.innerHTML = html;
@@ -238,28 +231,19 @@
                     document.getElementById(`tot-${i}-a-${sec}-total`).innerText = formatter.format(store[sec].a[i]);
                 });
             });
+            let ytdPBT = 0;
             months.forEach((_, i) => {
                 ['f', 'a'].forEach(m => {
                     let gor = store.sales[m][i] - store.cogs[m][i] - store.expenses[m][i];
                     document.getElementById(`tot-${i}-${m}-gor-summary`).innerText = formatter.format(gor);
+                    document.getElementById(`tot-${i}-${m}-pbt-summary`).innerText = formatter.format(gor);
                     document.getElementById(`tot-${i}-${m}-pat-summary`).innerText = formatter.format(gor * 0.8);
+                    if(m === 'a') ytdPBT += gor;
                 });
             });
-            
-            // RMCC Logic
-            const sR = document.querySelector('.sales-item-row');
-            if(sR) {
-                const sF = Array.from(sR.querySelectorAll('.val-f')).map(x => parseFloat(x.value)||0);
-                const sA = Array.from(sR.querySelectorAll('.val-a')).map(x => parseFloat(x.value)||0);
-                document.querySelectorAll('.cogs-item-row').forEach(row => {
-                    const cF = Array.from(row.querySelectorAll('.val-f')).map(x => parseFloat(x.value)||0);
-                    const cA = Array.from(row.querySelectorAll('.val-a')).map(x => parseFloat(x.value)||0);
-                    row.querySelectorAll('.rmcc-wrapper').forEach((w, i) => {
-                        let rf = sF[i] > 0 ? (cF[i]/sF[i])*100 : 0, ra = sA[i] > 0 ? (cA[i]/sA[i])*100 : 0;
-                        w.innerHTML = `<span class="rmcc-simple"><span style="color:#2563eb">F:${rf.toFixed(0)}%</span> <span style="color:#ea580c">A:${ra.toFixed(0)}%</span></span>`;
-                    });
-                });
-            }
+            document.getElementById(`ytd-a-gor-summary`).innerText = formatter.format(ytdPBT);
+            document.getElementById(`ytd-a-pbt-summary`).innerText = formatter.format(ytdPBT);
+            document.getElementById(`ytd-a-pat-summary`).innerText = formatter.format(ytdPBT * 0.8);
         }
         window.onload = updateDropdown;
     </script>
