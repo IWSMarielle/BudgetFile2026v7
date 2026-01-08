@@ -22,7 +22,7 @@
         .btn-sub { background: transparent; color: #94a3b8; border: 1px solid #475569; padding: 8px; border-radius: 6px; font-size: 11px; cursor: pointer; margin-top: 20px; width: 100%; }
         #admin-panel { display: none; margin-top: 20px; padding-top: 20px; border-top: 1px dashed #475569; width: 100%; }
 
-        /* V10.0 TABLE STYLES */
+        /* V10.1 TABLE STYLES */
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
         body { font-family: 'Inter', sans-serif; padding: 15px; background-color: #f1f5f9; color: #1e293b; }
         .header-main { background: #0f172a; color: #fbbf24; padding: 15px; border-radius: 4px 4px 0 0; text-align: center; border-bottom: 4px solid #fbbf24; }
@@ -80,7 +80,7 @@
         </div>
 
         <div class="toolbar">
-            <div style="font-size: 11px; font-weight: 800; background: #fbbf24; padding: 3px 6px; border-radius: 2px;">V10.0 MASTER</div>
+            <div style="font-size: 11px; font-weight: 800; background: #fbbf24; padding: 3px 6px; border-radius: 2px; color: #0f172a;">V10.1 MASTER</div>
             <button class="btn" style="background: #3b82f6; color:white;" onclick="exportToFile()">💾 Save</button>
             <button class="btn" style="background: #6366f1; color:white;" onclick="document.getElementById('fileInput').click()">📂 Load</button>
             <button class="btn" style="background: #ef4444; color:white; margin-left: auto;" onclick="location.reload()">🔒 Logout</button>
@@ -153,7 +153,7 @@
             } else { document.getElementById('err').innerText = "INVALID CODE"; }
         }
 
-        // 2. V10.0 CORE TABLE LOGIC
+        // 2. V10.1 CORE TABLE LOGIC
         function autoExpand(el) { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; }
 
         function exportToFile() {
@@ -184,7 +184,7 @@
             months.forEach((m, idx) => {
                 mHead.innerHTML += `<th colspan="${idx === 0 ? 6 : 5}">${m}</th>`;
                 if(idx === 0) sHead.innerHTML += `<th class="col-val">Dec(LM)</th>`;
-                sHead.innerHTML += `<th class="col-val">Forecast</th><th class="col-val">Act</th><th class="col-pct">vsB%</th><th class="col-pct">vsL%</th><th class="col-rem">Remarks</th>`;
+                sHead.innerHTML += `<th class="col-val">Forecast</th><th class="col-val">Act</th><th class="col-pct">vs F %</th><th class="col-pct">vs L %</th><th class="col-rem">Remarks</th>`;
             });
             mHead.innerHTML += `<th rowspan="2" class="col-ytd">YTD ACT</th><th rowspan="2" class="col-final">ANNUAL SUMMARY</th>`;
             configs.forEach(conf => {
@@ -294,7 +294,7 @@
                     const wrappers = row.querySelectorAll('.rmcc-wrapper');
                     cA.forEach((c, i) => {
                         let rf = sF[i] > 0 ? (cF[i]/sF[i])*100 : 0, ra = sA[i] > 0 ? (cA[i]/sA[i])*100 : 0;
-                        wrappers[i].innerHTML = `<span class="rmcc-simple"><span class="rmcc-b">B:${rf.toFixed(1)}%</span> <span class="rmcc-a">A:${ra.toFixed(1)}%</span></span>`;
+                        wrappers[i].innerHTML = `<span class="rmcc-simple"><span class="rmcc-b">F:${rf.toFixed(1)}%</span> <span class="rmcc-a">A:${ra.toFixed(1)}%</span></span>`;
                     });
                 });
             }
